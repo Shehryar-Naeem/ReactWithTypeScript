@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import './App.css';
+import AddToDoList from './Component/AddToDoList';
+import List from './Component/List';
+// import List from './Component/List';
+
+// interface IState{
+//   people:{
+//     name:string,
+//     age:number,
+//     url:string,
+//     note?:string
+//   }[]
+// }
+// function App() {
+//   const [people,setPeople]= useState<IState['people']>([])
+//   return (
+//     <div className="App">
+//       <h1>People invited to my party</h1>
+//       <List people={people}/>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+export interface IState{
+  people:{
+    name:string,
+    age:number,
+    url:string,
+    note?:string
+  }[]
+}
+const App=()=>{
+  const [people,setPeople]= useState<IState['people']>([
+    {
+      name:"shehryar",
+      age:20,
+      url:"https://www.kindpng.com/picc/m/119-1195498_avatar-people-person-business-user-man-character-businessman.png",
+      note:"I am a frontEnd developer."
+    }
+  ])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <div className='App'>
+        <h1>People invited to my party</h1>
+        <List people={people}/>
+        <AddToDoList people={people} setPeople={setPeople}/>  
+      </div>
+    </>
+  )
 }
 
-export default App;
+export default App
